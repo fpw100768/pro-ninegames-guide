@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>足彩竞猜 · 简明指南与访问提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #f9e1b0 0%, #f3c68c 45%, #ecb77a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.2rem;
+    }
+
+    .page-wrapper {
+      max-width: 1050px;
+      width: 100%;
+    }
+
+    /* 主卡片容器 */
+    .main-card {
+      background: #fffcf7;
+      border-radius: 48px;
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 20px 40px rgba(160, 90, 30, 0.18), 0 10px 12px rgba(120, 70, 20, 0.08);
+      transition: box-shadow 0.2s;
+    }
+
+    /* 头部 —— 主视觉 */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2.8rem;
+      text-align: center;
+    }
+
+    .hero-icon {
+      background: #f8d5a0;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      line-height: 1;
+      box-shadow: 0 6px 12px rgba(210, 130, 30, 0.2);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 620;
+      color: #3e2c1b;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: #6b4e30;
+      max-width: 620px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      background: #f8eddd;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      display: inline-block;
+    }
+
+    /* 卡片区域 —— 两列自动适应 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .info-card {
+      background: #faf2e7;
+      padding: 1.8rem 1.6rem;
+      border-radius: 32px;
+      box-shadow: inset 0 1px 2px rgba(255, 245, 230, 0.7), 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .info-card h2 {
+      font-size: 1.5rem;
+      font-weight: 580;
+      color: #3d2b17;
+      border-left: 5px solid #dba668;
+      padding-left: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-card li {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 0.85rem;
+      color: #3d3022;
+      line-height: 1.5;
+      font-size: 1rem;
+    }
+
+    .info-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0.2rem;
+      color: #b8844a;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+
+    .info-card p {
+      color: #4b3b2a;
+      line-height: 1.6;
+    }
+
+    /* 适合人群 + 自然链接段落 */
+    .audience-note {
+      background: #f7e9d8;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .audience-block {
+      flex: 2 1 260px;
+    }
+
+    .audience-block h3 {
+      font-size: 1.3rem;
+      font-weight: 560;
+      color: #402e1b;
+      margin-bottom: 0.5rem;
+    }
+
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      background: #e9d9c3;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      color: #3d2c1a;
+      font-weight: 450;
+    }
+
+    .link-note {
+      flex: 1.5 1 180px;
+      background: #fcf5eb;
+      padding: 0.9rem 1.4rem;
+      border-radius: 40px;
+      text-align: center;
+      font-size: 1rem;
+      color: #4c3821;
+      line-height: 1.6;
+      box-shadow: 0 3px 8px rgba(150, 90, 30, 0.06);
+    }
+
+    .link-note a {
+      display: inline-block;
+      background: #dba668;
+      color: #231a10;
+      text-decoration: none;
+      font-weight: 580;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 2px 0 rgba(120, 70, 20, 0.1);
+      margin: 0 0.15rem;
+    }
+
+    .link-note a:hover {
+      background: #ce9453;
+      transform: scale(1.02);
+    }
+
+    .link-note a:active {
+      background: #b97f41;
+      transform: translateY(1px);
+    }
+
+    /* FAQ 摘要 —— 折叠风格卡片 */
+    .faq-digest {
+      background: #f5e7d4;
+      border-radius: 32px;
+      padding: 1.6rem 2rem;
+      margin-top: 0.2rem;
+    }
+
+    .faq-digest h3 {
+      font-weight: 550;
+      font-size: 1.2rem;
+      color: #3f2c19;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px dashed #d3ba9a;
+      padding-bottom: 0.8rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 540;
+      color: #3f2d1b;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .faq-q::before {
+      content: "▸";
+      color: #b58248;
+      font-weight: 600;
+    }
+
+    .faq-a {
+      color: #4f3b27;
+      margin-left: 1.3rem;
+      margin-top: 0.2rem;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    /* 底部小提示 */
+    .access-tip {
+      margin-top: 2rem;
+      background: #f1e2cf;
+      border-radius: 30px;
+      padding: 1rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: #4d3821;
+    }
+
+    .access-tip span {
+      background: #fbf3e7;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+    }
+
+    .access-tip small {
+      opacity: 0.75;
+    }
+
+    /* 响应式 */
+    @media (max-width: 760px) {
+      .main-card {
+        padding: 2rem 1.2rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .audience-note {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+      }
+
+      .link-note {
+        text-align: left;
+        padding: 0.9rem 1.2rem;
+      }
+
+      .hero-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-card {
+        padding: 1.5rem 1rem;
+        border-radius: 36px;
+      }
+
+      .info-card {
+        padding: 1.4rem 1rem;
+      }
+
+      .faq-digest {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="main-card">
+
+    <!-- 主视觉 -->
+    <div class="hero">
+      <div class="hero-icon">⚽</div>
+      <h1>足彩竞猜 · 简明指南</h1>
+      <p>一份安静的提醒，一次清晰的了解</p>
+    </div>
+
+    <!-- 双卡片区域：用途 & 简要特点 -->
+    <div class="card-grid">
+      <div class="info-card">
+        <h2>用途与场景</h2>
+        <ul>
+          <li>用于了解赛事对阵与竞猜选项</li>
+          <li>适合赛前浏览基本信息与赔率变化</li>
+          <li>作为信息参考，辅助个人判断</li>
+          <li>移动端与电脑端均可顺畅浏览</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h2>特点与边界</h2>
+        <ul>
+          <li>界面干净，信息归类清晰</li>
+          <li>不承诺结果，不提供内幕</li>
+          <li>保持理性，量力而行</li>
+          <li>建议设定预算与时间界限</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 适合人群 + 自然链接段落（融合在一个模块） -->
+    <div class="audience-note">
+      <div class="audience-block">
+        <h3>适合什么样的人</h3>
+        <p style="color:#4f3a27;">对足球赛事有一定了解，愿意花时间做功课的爱好者；也适合希望用一点竞猜增加观赛趣味的朋友。新人可以先在 <a href="https://webs-sportsbet.com" style="background:#dba668; color:#231a10; text-decoration:none; padding:0.1rem 0.7rem; border-radius:30px; font-weight:550; white-space:nowrap;">足彩竞猜</a> 上浏览信息，慢慢熟悉规则与表达方式。</p>
+        <div class="audience-tags">
+          <span class="tag">⚽ 球迷</span>
+          <span class="tag">📊 数据型</span>
+          <span class="tag">🧘 理性派</span>
+          <span class="tag">🕹️ 轻度参与</span>
+        </div>
+      </div>
+      <div class="link-note">
+        <p>想直接了解信息结构与常见赛事？<br> 通过 <a href="https://webs-sportsbet.com">足彩竞猜</a> 的页面，可以快速找到联赛分类与即时选项。</p>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-digest">
+      <h3>📌 常见疑问摘要</h3>
+      <div class="faq-item">
+        <div class="faq-q">需要注册才能浏览吗？</div>
+        <div class="faq-a">多数信息可以直接浏览，具体以页面提示为准。建议先观察，再决定是否操作。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">资讯更新速度快吗？</div>
+        <div class="faq-a">通常会在赛前维持更新，但高峰期可能存在延迟。多对比几个信息源总是好的。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">有什么值得注意的习惯？</div>
+        <div class="faq-a">设定时间与金额上限，不要让竞猜占据生活主要精力。小赌怡情，大赌伤神。</div>
+      </div>
+    </div>
+
+    <!-- 访问提醒 -->
+    <div class="access-tip">
+      <span>🔔 访问前提醒</span>
+      <span>⏳ 建议使用稳定网络环境</span>
+      <span>🧠 保持独立判断</span>
+      <small>— 信息仅供参考 —</small>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
